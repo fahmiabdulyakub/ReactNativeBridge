@@ -1,3 +1,6 @@
 export interface PropsType {
-  onPress: () => void;
+  onPressCart?: () => void;
+  title: string;
+  onPressBack?: () => void;
+  numberCart?: number;
 }

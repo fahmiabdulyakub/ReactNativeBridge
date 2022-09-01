@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from 'themes';
+import {Colors, Fonts} from 'themes';
 import {hp, wp} from 'utils/StyleUtil';
 
 export default StyleSheet.create({
@@ -7,9 +7,36 @@ export default StyleSheet.create({
     backgroundColor: Colors.blue,
     height: hp(7),
     paddingHorizontal: wp(5),
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: hp(2),
+  },
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: wp(25),
+  },
+  title: {
+    color: Colors.white,
+    fontFamily: Fonts.PoppinsMedium,
+    fontSize: hp(2.5),
+  },
+  numberCartContainer: {
+    backgroundColor: Colors.red,
+    width: wp(6),
+    height: wp(6),
+    borderRadius: wp(6) / 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    left: wp(7),
+  },
+  numberCart: {
+    color: Colors.white,
+    fontFamily: Fonts.PoppinsMedium,
+    fontSize: hp(1.5),
+    top: 1,
   },
 });
