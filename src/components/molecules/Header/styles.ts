@@ -5,7 +5,7 @@ import {hp, wp} from 'utils/StyleUtil';
 export default StyleSheet.create({
   container: {
     backgroundColor: Colors.blue,
-    height: hp(8),
+    height: hp(7),
     paddingHorizontal: wp(5),
     justifyContent: 'flex-end',
     flexDirection: 'row',

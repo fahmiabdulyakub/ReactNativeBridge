@@ -9,7 +9,8 @@ export default StyleSheet.create({
   },
   title: {
     fontSize: hp(2),
-    color: Colors.black,
+    color: Colors.white,
     fontFamily: Fonts.PoppinsMedium,
+    top: 1,
   },
 });
