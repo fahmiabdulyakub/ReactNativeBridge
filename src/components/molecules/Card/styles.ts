@@ -17,6 +17,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    margin: wp(1),
   },
   image: {
     width: wp(41),

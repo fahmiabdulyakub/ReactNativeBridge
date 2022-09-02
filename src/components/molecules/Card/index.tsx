@@ -9,7 +9,7 @@ const Card = ({
   image,
   title,
   price,
-  numberItem,
+  quantity,
   onPressPlus,
   onPressMinus,
 }: PropsType) => {
@@ -18,7 +18,7 @@ const Card = ({
       <Image source={{uri: image}} style={styles.image} />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.price}>{price}</Text>
-      {numberItem ? (
+      {quantity ? (
         <View style={styles.containerItem}>
           <Button
             icon={<ICPlus />}
@@ -26,7 +26,7 @@ const Card = ({
             onPress={onPressPlus}
           />
           <View style={styles.numberContainer}>
-            <Text style={styles.number}>{numberItem}</Text>
+            <Text style={styles.number}>{quantity}</Text>
           </View>
 
           <Button
