@@ -3,6 +3,7 @@ export interface PropsType {
   title: string;
   price: string;
   quantity?: number;
+  onPressAdd?: () => void;
   onPressPlus?: () => void;
   onPressMinus?: () => void;
 }

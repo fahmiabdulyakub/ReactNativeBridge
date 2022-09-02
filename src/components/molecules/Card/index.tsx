@@ -10,6 +10,7 @@ const Card = ({
   title,
   price,
   quantity,
+  onPressAdd,
   onPressPlus,
   onPressMinus,
 }: PropsType) => {
@@ -21,22 +22,21 @@ const Card = ({
       {quantity ? (
         <View style={styles.containerItem}>
           <Button
-            icon={<ICPlus />}
-            style={styles.buttonCounter}
-            onPress={onPressPlus}
-          />
-          <View style={styles.numberContainer}>
-            <Text style={styles.number}>{quantity}</Text>
-          </View>
-
-          <Button
             icon={<ICMinus />}
             style={styles.buttonCounter}
             onPress={onPressMinus}
           />
+          <View style={styles.numberContainer}>
+            <Text style={styles.number}>{quantity}</Text>
+          </View>
+          <Button
+            icon={<ICPlus />}
+            style={styles.buttonCounter}
+            onPress={onPressPlus}
+          />
         </View>
       ) : (
-        <Button text="Add" style={styles.buttonAdd} onPress={onPressPlus} />
+        <Button text="Add" style={styles.buttonAdd} onPress={onPressAdd} />
       )}
     </View>
   );
