@@ -19,6 +19,7 @@ module.exports = {
           '@themes': './src/themes',
           '@types': './src/types',
           '@utils': './src/utils',
+          '@store': './src/store',
         },
       },
     ],
