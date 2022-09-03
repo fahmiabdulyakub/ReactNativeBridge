@@ -22,8 +22,6 @@ const Home = () => {
     shallowEqual,
   );
 
-  const onPressCart = () => {};
-
   const onAddToCart = useCallback((product: ProductType) => {
     dispatch(addToCart(product));
   }, []);
@@ -63,7 +61,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Header title="Home" onPressCart={onPressCart} />
+      <Header title="Home" isShowCart />
       <FlatList
         contentContainerStyle={styles.contentContainer}
         data={Data.listProduct}

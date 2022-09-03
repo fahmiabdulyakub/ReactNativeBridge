@@ -1,5 +1,6 @@
 export interface PropsType {
   onPressCart?: () => void;
   title: string;
-  onPressBack?: () => void;
+  isShowBack?: boolean;
+  isShowCart?: boolean;
 }

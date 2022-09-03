@@ -6,8 +6,12 @@ import {PropsType} from './types';
 import {ICCart, ICLeft} from 'assets';
 import {shallowEqual, useSelector} from 'react-redux';
 import {GlobalType} from 'types/GlobalType';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {StackParams} from 'types/navigationType';
 
-const Header = ({onPressCart, onPressBack, title}: PropsType) => {
+const Header = ({isShowCart, isShowBack, title}: PropsType) => {
+  const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   const cartTotalQuantity = useSelector<GlobalType, number>(
     state => state.cart.cartTotalQuantity,
     shallowEqual,
@@ -15,12 +19,17 @@ const Header = ({onPressCart, onPressBack, title}: PropsType) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
-        {onPressBack && <Button icon={<ICLeft />} onPress={onPressBack} />}
+        {isShowBack && (
+          <Button icon={<ICLeft />} onPress={() => navigation.goBack()} />
+        )}
         <Text style={styles.title}>{title}</Text>
       </View>
-      {onPressCart && (
+      {isShowCart && (
         <View>
-          <Button icon={<ICCart />} onPress={onPressCart} />
+          <Button
+            icon={<ICCart />}
+            onPress={() => navigation.navigate('Cart')}
+          />
           {!!cartTotalQuantity && (
             <View style={styles.numberCartContainer}>
               <Text style={styles.numberCart}>{cartTotalQuantity}</Text>
