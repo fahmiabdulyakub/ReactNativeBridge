@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {FlatList, View} from 'react-native';
-import React, {Dispatch} from 'react';
+import React, {Dispatch, useCallback} from 'react';
 import styles from './styles';
 import {Card, Header} from 'components';
 import {Data} from 'constants/index';
@@ -23,19 +24,42 @@ const Home = () => {
 
   const onPressCart = () => {};
 
-  const onAddToCart = (product: ProductType) => {
+  const onAddToCart = useCallback((product: ProductType) => {
     dispatch(addToCart(product));
-  };
+  }, []);
 
-  const onIncrement = (product: ProductType) => {
+  const onIncrement = useCallback((product: ProductType) => {
     dispatch(incrementQty(product));
-  };
+  }, []);
 
-  const onDecrement = (product: ProductType, index: number) => {
-    cartList[index]?.quantity === 1
-      ? dispatch(removeItemCart(product))
-      : dispatch(decrementQty(product));
-  };
+  const onDecrement = useCallback(
+    (product: ProductType) => {
+      const index = cartList.findIndex(item => item.id === product.id);
+      cartList[index]?.quantity === 1
+        ? dispatch(removeItemCart(product))
+        : dispatch(decrementQty(product));
+    },
+    [cartList],
+  );
+
+  const renderCard = useCallback(
+    (item: ProductType, key: number) => {
+      const index = cartList.findIndex(itemCart => itemCart.id === item.id);
+      return (
+        <Card
+          key={key}
+          image={item.image_url}
+          title={item.name}
+          price={formatRupiah(item.price)}
+          onPressAdd={() => onAddToCart(item)}
+          onPressPlus={() => onIncrement(item)}
+          onPressMinus={() => onDecrement(item)}
+          quantity={cartList[index]?.quantity}
+        />
+      );
+    },
+    [cartList],
+  );
 
   return (
     <View style={styles.container}>
@@ -45,18 +69,7 @@ const Home = () => {
         data={Data.listProduct}
         showsVerticalScrollIndicator={false}
         numColumns={2}
-        renderItem={({item, index}) => (
-          <Card
-            key={index}
-            image={item.image_url}
-            title={item.name}
-            price={formatRupiah(item.price)}
-            onPressAdd={() => onAddToCart(item)}
-            onPressPlus={() => onIncrement(item)}
-            onPressMinus={() => onDecrement(item, index)}
-            quantity={cartList[index]?.quantity}
-          />
-        )}
+        renderItem={({item, index}) => renderCard(item, index)}
       />
     </View>
   );
