@@ -11,10 +11,16 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  titleContainer: {
+  leftContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    width: wp(35),
+  },
+  rightContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
     width: wp(25),
   },
   title: {
@@ -37,5 +43,8 @@ export default StyleSheet.create({
     fontFamily: Fonts.PoppinsMedium,
     fontSize: hp(1.5),
     top: 1,
+  },
+  addSpace: {
+    marginRight: wp(5),
   },
 });

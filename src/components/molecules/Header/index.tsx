@@ -3,14 +3,14 @@ import React, {memo} from 'react';
 import styles from './styles';
 import {Button} from 'components';
 import {PropsType} from './types';
-import {ICCart, ICLeft} from 'assets';
+import {ICCart, ICLeft, ICLoading} from 'assets';
 import {shallowEqual, useSelector} from 'react-redux';
 import {GlobalType} from 'types/GlobalType';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {StackParams} from 'types/navigationType';
 
-const Header = ({isShowCart, isShowBack, title}: PropsType) => {
+const Header = ({isShowCart, isShowBack, title, isShowProgress}: PropsType) => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   const cartTotalQuantity = useSelector<GlobalType, number>(
     state => state.cart.cartTotalQuantity,
@@ -18,25 +18,34 @@ const Header = ({isShowCart, isShowBack, title}: PropsType) => {
   );
   return (
     <View style={styles.container}>
-      <View style={styles.titleContainer}>
+      <View style={styles.leftContainer}>
         {isShowBack && (
           <Button icon={<ICLeft />} onPress={() => navigation.goBack()} />
         )}
         <Text style={styles.title}>{title}</Text>
       </View>
-      {isShowCart && (
-        <View>
+      <View style={styles.rightContainer}>
+        {isShowProgress && (
           <Button
-            icon={<ICCart />}
-            onPress={() => navigation.navigate('Cart')}
+            style={styles.addSpace}
+            icon={<ICLoading />}
+            onPress={() => navigation.navigate('Progress')}
           />
-          {!!cartTotalQuantity && (
-            <View style={styles.numberCartContainer}>
-              <Text style={styles.numberCart}>{cartTotalQuantity}</Text>
-            </View>
-          )}
-        </View>
-      )}
+        )}
+        {isShowCart && (
+          <View>
+            <Button
+              icon={<ICCart />}
+              onPress={() => navigation.navigate('Cart')}
+            />
+            {!!cartTotalQuantity && (
+              <View style={styles.numberCartContainer}>
+                <Text style={styles.numberCart}>{cartTotalQuantity}</Text>
+              </View>
+            )}
+          </View>
+        )}
+      </View>
     </View>
   );
 };

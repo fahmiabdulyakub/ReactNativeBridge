@@ -61,7 +61,7 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      <Header title="Home" isShowCart />
+      <Header title="Home" isShowCart isShowProgress />
       <FlatList
         contentContainerStyle={styles.contentContainer}
         data={Data.listProduct}

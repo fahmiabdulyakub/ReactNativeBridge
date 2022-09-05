@@ -3,4 +3,5 @@ export interface PropsType {
   title: string;
   isShowBack?: boolean;
   isShowCart?: boolean;
+  isShowProgress?: boolean;
 }
