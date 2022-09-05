@@ -3,7 +3,7 @@ import {LogBox, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import {Colors} from 'themes/index';
-import {Cart, Home} from 'screens';
+import {Cart, Home, Progress} from 'screens';
 import {StackParams} from 'types/navigationType';
 import {Provider} from 'react-redux';
 import store from 'store';
@@ -25,6 +25,11 @@ export const Routes = () => {
             <Stack.Screen
               name="Cart"
               component={Cart}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Progress"
+              component={Progress}
               options={{headerShown: false}}
             />
           </Stack.Navigator>
