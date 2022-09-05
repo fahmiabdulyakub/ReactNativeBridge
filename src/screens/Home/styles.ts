@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {Colors} from 'themes';
+import {Colors, Fonts} from 'themes';
 import {hp, wp} from 'utils/StyleUtil';
 
 const styles = StyleSheet.create({
@@ -10,6 +10,11 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingVertical: hp(2),
     marginHorizontal: wp(3),
+  },
+  deviceId: {
+    color: Colors.dark_gray,
+    fontFamily: Fonts.PoppinsMedium,
+    fontSize: hp(2),
   },
 });
 

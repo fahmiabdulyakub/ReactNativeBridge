@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {FlatList, View} from 'react-native';
-import React, {Dispatch, useCallback} from 'react';
+import {FlatList, NativeModules, Text, View} from 'react-native';
+import React, {Dispatch, useCallback, useEffect, useState} from 'react';
 import styles from './styles';
 import {Card, Header} from 'components';
 import {Data} from 'constants/index';
@@ -15,12 +15,26 @@ import {
   removeItemCart,
 } from 'store/actions';
 
+const DeviceInfo = NativeModules.DeviceInfoGet;
+
 const Home = () => {
   const dispatch: Dispatch<any> = useDispatch();
+  const [deviceID, setDeviceID] = useState();
   const cartList = useSelector<GlobalType, ProductCartType[]>(
     state => state.cart.cartList,
     shallowEqual,
   );
+
+  useEffect(() => {
+    DeviceInfo.getDeviceID((err: any, device: any) => {
+      if (err) {
+        // error
+      } else {
+        // device ID returned
+        setDeviceID(device);
+      }
+    });
+  }, []);
 
   const onAddToCart = useCallback((product: ProductType) => {
     dispatch(addToCart(product));
@@ -63,6 +77,9 @@ const Home = () => {
     <View style={styles.container}>
       <Header title="Home" isShowCart isShowProgress />
       <FlatList
+        ListHeaderComponent={
+          <Text style={styles.deviceId}>Device ID : {deviceID}</Text>
+        }
         contentContainerStyle={styles.contentContainer}
         data={Data.listProduct}
         showsVerticalScrollIndicator={false}
